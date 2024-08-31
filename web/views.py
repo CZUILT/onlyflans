@@ -1,20 +1,38 @@
-from django.shortcuts import render
-from.models import Flan
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import Flan, ContactForm
+from .forms import ContactFormForm
 
+# Create your views here.
 def home(req):
-        # flanes_all = Flan.objects.all() 
-        flanes_publicos = Flan.objects.filter(is_private=False) 
-        return render(req, 'index.html', {"flanes_publicos": flanes_publicos})
-    
+    flanes_publicos = Flan.objects.filter(is_private=False) # Carga los flanes dependiendo si "private=False"
+    return render(req, 'index.html', {"flanes_publicos": flanes_publicos})
 
-def acerca(req):
-    context = {
-       "data": "" 
-    }
-    return render(req, 'about.html', context)
+def welcome(req):
+    private_flans = Flan.objects.filter(is_private=True)
+    return render(req, 'welcome.html', {"private_flans": private_flans})
 
-def bienvenido(req):
+def about(req):
+    return render(req, 'about.html', {})
+
+def nueva_vista(req):
     context = {
-    "message2": "Bienvenid@s a nuestro sitio especialista en Flanes Gourmet",   
+        "username": "César"
     }
-    return render(req, 'welcome.html', context)
+    return render(req, 'nueva_vista.html', context)
+
+def contacto(req):
+    if req.method == 'POST':
+        
+        #*FORM
+        form = ContactFormForm(req.POST)
+        if form.is_valid():
+            #*MODEL
+            ContactForm.objects.create(**form.cleaned_data)# Pasamos la data del diccionario .cleanned_data a argumentos
+            return HttpResponseRedirect('/exito')
+    else:
+        form = ContactFormForm()
+    return render(req, 'contactus.html', {'form': form})
+
+def exito(req):
+    return render(req, 'success.html', {})

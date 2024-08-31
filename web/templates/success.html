@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+<div class="container">
+  <div class="col-12 col-md-6 offset-0 offset-md-3 mt-4 mb-4">
+    <h3 class="text-center">
+      Gracias por contactarte con OnlyFlans!!
+    </h3>
+    <p>En breve nos pondremos en contacto contigo</p>
+    <div>
+        <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHlodXpydThwenlhdnl0cHlhaThpeHFrMmxlNjBuNHZ3cnA1NDI0biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/89zzABKBHhFjW/giphy.webp" sizes="85px">
+    </div>
+    <div class="text-center">
+      <a href="{% url 'home' %}" class="btn btn-primary">
+        Volver al inicio
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

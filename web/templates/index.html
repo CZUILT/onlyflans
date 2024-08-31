@@ -3,22 +3,21 @@
 {% load static %}
 <div class="container" id="cards">
     <!-- "mesaage" se trae desde views.py -->
-    <h1>{{message}}</h1>
-    <div class="row row-cols-2 row-cols-md-4 g-4">
+    <!-- <h1>{{message}}</h1> -->
+    <div class="row row-cols-2 row-cols-md-3 g-4">
         <!-- Aquí van las card -->
         {% for p in flanes_publicos %}
         <div class="col">
             <div class="card">
-                <img src="{{p.image_url}}"
-                    class="card-img-top" alt="...">
+                <img src={{p.image_url}}
+                    class="card-img-top" alt="..." id="dessert">
                 <div class="card-body">
                     <h5 class="card-title">{{p.name}}</h5>
-                    <p class="card-text">{{p.description}}</p>
+                    <p class="card-text">{{ p.description | slice:":150" }}{% if p.description|length > 50 %}...{% endif %}</p>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
-
 {% endblock %}

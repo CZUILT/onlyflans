@@ -1,7 +1,25 @@
 {% extends 'base.html' %}
-
 {% block 'content' %}
-<div>
-    <h2>{{message2}}</h2>
+{% load static %}
+<div class="container" id="cards">
+    <!-- "mesaage" se trae desde views.py -->
+    <!-- <h1>{{message}}</h1> -->
+    <div class="row row-cols-2 row-cols-md-3 g-4">
+        <!-- Aquí van las card -->
+        {% for p in private_flans %}
+        <div class="col">
+            <div class="card">
+                <img src={{p.image_url}}
+                    class="card-img-top" alt="..." id="dessert">
+                <div class="card-body">
+                    <h5 class="card-title">{{p.name}}</h5>
+                    <p class="card-text">
+                      {{ p.description | slice:":100" }}{% if p.description|length > 50 %}...{% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
