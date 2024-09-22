@@ -13,7 +13,7 @@
                     class="card-img-top" alt="..." id="dessert">
                 <div class="card-body">
                     <h5 class="card-title">{{p.name}}</h5>
-                    <p class="card-text">{{ p.description | slice:":150" }}{% if p.description|length > 50 %}...{% endif %}</p>
+                    <p class="card-text">{{ p.description | slice:":100" }}{% if p.description|length > 50 %}...{% endif %}</p>
                 </div>
             </div>
         </div>

@@ -23,7 +23,7 @@ def nueva_vista(req):
 
 def contacto(req):
     if req.method == 'POST':
-        
+
         #*FORM
         form = ContactFormForm(req.POST)
         if form.is_valid():
