@@ -2,9 +2,11 @@
 {% block 'content' %}
 {% load static %}
 <div class="container" id="cards">
+    <h2>Nuestros productos</h2>
     <!-- "mesaage" se trae desde views.py -->
     <!-- <h1>{{message}}</h1> -->
     <div class="row row-cols-2 row-cols-md-3 g-4">
+        
         <!-- Aquí van las card -->
         {% for p in flanes_publicos %}
         <div class="col">

@@ -10,10 +10,14 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Inicio</a>
           </li>
+
+          {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/welcome">Bienvenido</a>
+            <a class="nav-link active" aria-current="page" href="/welcome">Bienvenido(a)</a>
             <!-- <p>Contiene productos que solo ven usuarios registrados</p> -->
           </li>
+          {% endif %}
+
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/about">Acerca</a>
           </li>
@@ -21,19 +25,23 @@
             <a class="nav-link active" aria-current="page" href="/contacto">Contacto</a>
             <!-- <p>Formulario para contactarnos</p> -->
           </li>
-
-          {% if user.is_active %}
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/about">Cerrar Sesión</a>
-            <!-- <p>Si el usuario ya se registró</p> -->
+          {% if not user.is_authenticated %}
+          <li class="nav-item ">
+            <a class="nav-link btn btn-secondary me-4 text-white" href="{% url 'login'%}">
+              Iniciar sesión
+            </a>
           </li>
-
-          {% else %}
+          {% endif %}
+          {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Iniciar Sesión</a>
-            <!-- <p>Si el usuario aún no se registra</p> -->
+            <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+              {% csrf_token %}
+            </form>
+            <a class="nav-link btn btn-secondary text-danger" href="#"
+              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              Cerrar sesión
+            </a>
           </li>
-
           {% endif %}
 
 

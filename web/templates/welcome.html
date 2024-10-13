@@ -3,7 +3,7 @@
 {% load static %}
 <div class="container" id="cards">
     <!-- "mesaage" se trae desde views.py -->
-    <!-- <h1>{{message}}</h1> -->
+    <h3>Bienvenid@ {{ user.get_username | upper }}</h3>
     <div class="row row-cols-2 row-cols-md-3 g-4">
         <!-- Aquí van las card -->
         {% for p in private_flans %}

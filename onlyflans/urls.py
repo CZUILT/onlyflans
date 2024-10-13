@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('web.urls')), # Luego vamos a la app web y creamos una nueva carpeta "urls.py"
+    path('accounts/', include('django.contrib.auth.urls')), # Seguridad adicional para el proyecto
 ]
